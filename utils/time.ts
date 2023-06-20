@@ -13,5 +13,11 @@ function convertDuration(duration: number): string {
     return `${minutesStr}:${secondsStr}`;
   }
 }
+function timeStringToDuration(timeString: string): number {
+  const [hours, minutes] = timeString.split(':');
+  const durationInMinutes = parseInt(hours) * 60 + parseInt(minutes);
+  return durationInMinutes;
+}
 
-export { convertDuration };
+
+export { convertDuration , timeStringToDuration };

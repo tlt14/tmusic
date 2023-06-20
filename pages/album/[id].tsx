@@ -1,29 +1,37 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import {
-    ISong,
+  ISong,
   PlaylistResponse,
   ZingMp3Response,
 } from "../types/ZingMP3Response.type";
 import { convertDuration } from "@/utils/time";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useEffect } from "react";
 import { setPlayList } from "@/features/playListSlice";
-import { setPlay, setPlayMusic } from "@/features/playMusicSlice";
+import { setListSong, setPlay, setPlayMusic } from "@/features/playMusicSlice";
+import Head from "next/head";
 
 interface IProps {
   playListResponse: ZingMp3Response;
 }
 export default function Detail({ playListResponse }: IProps) {
   const data: PlaylistResponse = playListResponse?.data;
-  const dispatch  = useAppDispatch();
-    useEffect(() => {
-        dispatch(setPlayList(data));
-    },[data])
-    const handlePlay=(item:ISong) => {
-        dispatch(setPlay(item));
-        dispatch(setPlayMusic(true))
-    }
+  const { data: playList } = useAppSelector((state) => state.playList);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setPlayList(data));
+  }, [data]);
+  const handlePlay = (item: ISong) => {
+    dispatch(setPlay(item));
+    dispatch(setPlayMusic(true));
+    dispatch(setListSong(playList.song.items))
+  };
   return (
+    <>
+    <Head>
+      <title>{data?.title}</title>
+      <meta name="description" content={data?.description} />
+    </Head>
     <div className="grid grid-cols-4 gap-x-4 ">
       <div className="flex items-start  justify-center rounded h-auto  bg-transparent max-h-[calc(100vh-200px)]">
         <div className="max-w-sm bg-transparent   rounded-lg shadow ">
@@ -63,7 +71,7 @@ export default function Detail({ playListResponse }: IProps) {
                     key={item.encodeId}
                     className="pb-3 sm:py-4 cursor-pointer "
                     onClick={() => {
-                        handlePlay(item);
+                      handlePlay(item);
                     }}
                   >
                     <div className="flex items-center space-x-4">
@@ -93,6 +101,7 @@ export default function Detail({ playListResponse }: IProps) {
         </ul>
       </div>
     </div>
+    </>
   );
 }
 
@@ -107,15 +116,15 @@ export default function Detail({ playListResponse }: IProps) {
 //   };
 // };
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const encodeId = params?.id as string;
-    const res = await fetch("http://localhost:3000/api/album/" + encodeId);
-    const data: ZingMp3Response = await res.json();
-    return {
-      props: {
-        playListResponse: data,
-      },
-    };
+  const encodeId = params?.id as string;
+  const res = await fetch("http://localhost:3000/api/album/" + encodeId);
+  const data: ZingMp3Response = await res.json();
+  return {
+    props: {
+      playListResponse: data,
+    },
   };
+};
 // export const getStaticPaths: GetStaticPaths = async () => {
 //   return {
 //     paths: [],

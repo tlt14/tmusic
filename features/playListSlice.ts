@@ -3,12 +3,51 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 // Define a type for the slice state
-
+interface IPlayList {
+  data:PlaylistResponse  
+}
 
 // Define the initial state using that type
-const initialState = {
+const initialState: IPlayList = {
     data: {
-        
+      encodeId: '',
+      title: '',
+      thumbnail: '',
+      isoffical: false,
+      link: '',
+      isIndie: false,
+      releaseDate: '',
+      sortDescription: '',
+      releasedAt: 0,
+      genreIds: [],
+      PR: false,
+      artists: [],
+      artistsNames: '',
+      playItemMode: 0,
+      subType: 0,
+      uid: 0,
+      thumbnailM: '',
+      isShuffle: false,
+      isPrivate: false,
+      userName: '',
+      isAlbum: false,
+      textType: '',
+      isSingle: false,
+      distributor: '',
+      description: '',
+      aliasTitle: '',
+      sectionId: '',
+      contentLastUpdate: 0,
+      artist: {},
+      genres: [],
+      song: {
+        items: [],
+        total: 0,
+        totalDuration: 0
+      },
+      like: 0,
+      listen: 0,
+      liked: false
     }
 }
 

@@ -92,7 +92,7 @@ export interface PlaylistResponse {
   description: string;
   aliasTitle: string;
   sectionId: string;
-  contentLastUpdate: bigint;
+  contentLastUpdate: number;
   artist: {};
   genres: [];
   song: {
