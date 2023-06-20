@@ -2,5 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
 }
+module.exports = {
+  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+}
+module.exports = {
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+}
 
 module.exports = nextConfig
