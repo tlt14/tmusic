@@ -29,7 +29,7 @@ function NewRelease({newRelease}:IProps) {
   const [tab, setTab] = React.useState<string>("all");
   useEffect(() => {
     setData(tab === 'all' ? newRelease.items.all : tab === 'vPop' ? newRelease.items.vPop : newRelease.items.others);
-  },[tab])
+  },[tab, newRelease.items.vPop, newRelease.items.others, newRelease.items.all])
   const dispatch = useAppDispatch();
   const handleClick = (item:ISong) => {
     dispatch(setPlay(item));

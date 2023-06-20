@@ -82,7 +82,7 @@ export default function MusicPlayer() {
     if (isPlaying) {
       audioRef.current?.play();
     }
-  }, [isPlaying, audioRef.current, url, currentPlay]);
+  }, [isPlaying, audioRef, url, currentPlay]);
 
   const handleNext = () => {
     const index = playlist.findIndex(

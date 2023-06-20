@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import {
   ISong,
   PlaylistResponse,
@@ -20,7 +20,7 @@ export default function Detail({ playListResponse }: IProps) {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setPlayList(data));
-  }, [data]);
+  }, [data,dispatch]);
   const handlePlay = (item: ISong) => {
     dispatch(setPlay(item));
     dispatch(setPlayMusic(true));

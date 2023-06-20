@@ -26,7 +26,7 @@ export default function MyMusic() {
             }
           }
           exampleUsage()
-    },[auth.currentUser])
+    },[auth])
     const dispatch = useAppDispatch();
     const handleClick = (item:ISong) => {
         dispatch(setPlay(item));

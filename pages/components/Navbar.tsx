@@ -28,8 +28,8 @@ export default function Navbar({ setIsShow, isShow }: INavbarProps) {
     setTimeout(()=>{
       setUser(auth.currentUser)
     },1000)
-    
-  },[auth])
+
+  },[auth.currentUser])
   return (
     <nav className="fixed md:left-[238px] top-0 z-50 w-full md:w-[calc(100%_-_238px)] bg-white border-b border-gray-200 dark:bg-[#221A2D] dark:border-gray-700">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
