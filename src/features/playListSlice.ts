@@ -1,4 +1,4 @@
-import { ICategory, PlaylistResponse, ZingMp3Response } from '@/pages/types/ZingMP3Response.type'
+import { ICategory, PlaylistResponse, ZingMp3Response } from '@/src/types/ZingMP3Response.type'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 

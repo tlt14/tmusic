@@ -17,16 +17,16 @@ import {
   ISong,
   IURLSong,
   ZingMp3Response,
-} from "../types/ZingMP3Response.type";
+} from "../../src/types/ZingMP3Response.type";
 import {
   setLoop,
   setPlay,
   setPlayMusic,
   setShuffle,
-} from "@/features/playMusicSlice";
+} from "@/src/features/playMusicSlice";
 import AudioPlayer from "./AudioPlayer";
 import axios from "axios";
-import { convertDuration } from "@/utils/time";
+import { convertDuration } from "@/src/utils/time";
 import { addWishList, auth, handleLogin } from "@/firebase";
 import { toast } from "react-toastify";
 export default function MusicPlayer() {

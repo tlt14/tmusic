@@ -14,7 +14,7 @@ import { collection, addDoc } from "firebase/firestore";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { toast } from "react-toastify";
-import { ISong } from "./pages/types/ZingMP3Response.type";
+import { ISong } from "./src/types/ZingMP3Response.type";
 import { useRouter } from "next/router";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

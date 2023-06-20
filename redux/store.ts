@@ -1,5 +1,5 @@
-import playListSlice from '@/features/playListSlice'
-import playMusicSlice from '@/features/playMusicSlice'
+import playListSlice from '@/src/features/playListSlice'
+import playMusicSlice from '@/src/features/playMusicSlice'
 import { configureStore } from '@reduxjs/toolkit'
 
 export const store = configureStore({

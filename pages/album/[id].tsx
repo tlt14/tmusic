@@ -3,12 +3,12 @@ import {
   ISong,
   PlaylistResponse,
   ZingMp3Response,
-} from "../types/ZingMP3Response.type";
-import { convertDuration } from "@/utils/time";
+} from "../../src/types/ZingMP3Response.type";
+import { convertDuration } from "@/src/utils/time";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useEffect } from "react";
-import { setPlayList } from "@/features/playListSlice";
-import { setListSong, setPlay, setPlayMusic } from "@/features/playMusicSlice";
+import { setPlayList } from "@/src/features/playListSlice";
+import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
 import Head from "next/head";
 
 interface IProps {

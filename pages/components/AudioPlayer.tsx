@@ -13,9 +13,9 @@ import {
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setPlayMusic } from "@/features/playMusicSlice";
-import { convertDuration } from "@/utils/time";
-import { IURLSong } from "../types/ZingMP3Response.type";
+import { setPlayMusic } from "@/src/features/playMusicSlice";
+import { convertDuration } from "@/src/utils/time";
+import { IURLSong } from "../../src/types/ZingMP3Response.type";
 interface IProps {
   url: IURLSong | undefined;
   handleTimeUpdate: () => void;

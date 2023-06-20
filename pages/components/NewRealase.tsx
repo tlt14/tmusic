@@ -1,8 +1,8 @@
 "use client"
 import React, { useContext, useEffect } from "react";
-import { INewRealease, ISong } from "../types/ZingMP3Response.type";
+import { INewRealease, ISong } from "../../src/types/ZingMP3Response.type";
 import { useAppDispatch } from "@/redux/hooks";
-import { setListSong, setPlay, setPlayMusic } from "@/features/playMusicSlice";
+import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
 
 interface IProps {
   newRelease: INewRealease;

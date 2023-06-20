@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Banner from './components/Banner'
 import Category from './components/Category'
 import NewRelease from './components/NewRealase'
-import { IBanner, ICategory,  INewRealease, ZingMp3Response } from './types/ZingMP3Response.type'
+import { IBanner, ICategory,  INewRealease, ZingMp3Response } from '../src/types/ZingMP3Response.type'
 
 
 

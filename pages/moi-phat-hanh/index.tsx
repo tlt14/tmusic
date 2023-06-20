@@ -1,11 +1,11 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import axios from 'axios';
-import { IRank, ISong, ZingMp3Response } from '../types/ZingMP3Response.type';
+import { IRank, ISong, ZingMp3Response } from '../../src/types/ZingMP3Response.type';
 import Link from "next/link";
-import { convertDuration } from "@/utils/time";
+import { convertDuration } from "@/src/utils/time";
 import { useAppDispatch } from "@/redux/hooks";
-import { setListSong, setPlay, setPlayMusic } from "@/features/playMusicSlice";
+import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
 
 interface IProps{
     data: ZingMp3Response

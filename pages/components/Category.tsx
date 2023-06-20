@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ICategory, ISong } from "../types/ZingMP3Response.type";
+import { ICategory, ISong } from "../../src/types/ZingMP3Response.type";
 
 interface IProps {
   category: ICategory;

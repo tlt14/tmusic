@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next"
-import { ICategory, Top100Response, ZingMp3Response } from "../types/ZingMP3Response.type"
+import { ICategory, Top100Response, ZingMp3Response } from "../../src/types/ZingMP3Response.type"
 import Category from "../components/Category"
 import Head from "next/head"
 
