@@ -1,13 +1,22 @@
 "use client";
 
+import { auth, handleLogin } from "@/firebase";
 import Link from "next/link";
-import Image from 'next/image';
+import { Router, useRouter } from "next/router";
 
 interface IPropsType {
     
     isShow: boolean;
 }
 export default function Sidebar({isShow}: IPropsType) {
+  const router =useRouter();
+  const handleClick =()=>{
+    if(auth.currentUser && auth.currentUser?.uid) {
+      router.push("/mymusic")
+    }else{
+      handleLogin()
+    }
+  }
   return (
     <aside
         className={`fixed w-[238px] h-screen overflow-hidden  transition-transform  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-[#170f23] dark:border-gray-700 
@@ -15,8 +24,8 @@ export default function Sidebar({isShow}: IPropsType) {
       >
         <div className="h-full px-3 py-4 overflow-y-auto ">
           <ul className="space-y-2 font-medium">
-            <li className="h-[70px]">
-                <Image className="p-[28px]" src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg" width={120} height={40} alt={""}></Image>
+            <li className="h-[70px] flex items-center">
+                <img className="px-[28px] w-full" src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg" alt={""}></img>
             </li>
             <li>
               <Link
@@ -55,7 +64,7 @@ export default function Sidebar({isShow}: IPropsType) {
               </Link>
             </li>
             <li>
-              <Link
+              {/* <Link
                 href="#"
                 className="flex items-center p-2 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
@@ -72,12 +81,12 @@ export default function Sidebar({isShow}: IPropsType) {
                 <span className="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">
                   Live
                 </span>
-              </Link>
+              </Link> */}
             </li>
             <li>
-              <Link
-                href="/"
-                className="flex items-center p-2 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              <button
+                className=" w-full flex items-center p-2 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                onClick={handleClick}
               >
                 <svg
                   aria-hidden="true"
@@ -90,14 +99,14 @@ export default function Sidebar({isShow}: IPropsType) {
                   <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
                 </svg>
                 <span className="ml-3">Thư viện</span>
-              </Link>
+              </button>
             </li>
             <li>
-                <div className="w-full h-1 bg-gray-200 rounded"></div>
+                <div className="w-full h-0.5 bg-gray-500 rounded"></div>
             </li>
             <li>
               <Link
-                href="/"
+                href="/moi-phat-hanh"
                 className="flex items-center p-2 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -113,7 +122,7 @@ export default function Sidebar({isShow}: IPropsType) {
                 <span className="ml-3">BXH Nhạc mới</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/"
                 className="flex items-center p-2 text-gray-900  dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -130,7 +139,7 @@ export default function Sidebar({isShow}: IPropsType) {
                 </svg>
                 <span className="ml-3">Chủ Đề & Thể Loại</span>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href="/top100"

@@ -55,7 +55,7 @@ function Banner({banner}: IProps) {
               className={`flex items-center justify-center h-auto rounded bg-gray-50 dark:bg-transparent p-4`}
             >
               <Link
-                href={``}
+                href={`/album/${item.encodeId}`}
                 className="text-2xl text-gray-400 dark:text-gray-500"
               >
                 <img

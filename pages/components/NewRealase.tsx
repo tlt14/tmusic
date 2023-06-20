@@ -1,6 +1,8 @@
 "use client"
 import React, { useContext, useEffect } from "react";
 import { INewRealease, ISong } from "../types/ZingMP3Response.type";
+import { useAppDispatch } from "@/redux/hooks";
+import { setListSong, setPlay, setPlayMusic } from "@/features/playMusicSlice";
 
 interface IProps {
   newRelease: INewRealease;
@@ -28,6 +30,12 @@ function NewRelease({newRelease}:IProps) {
   useEffect(() => {
     setData(tab === 'all' ? newRelease.items.all : tab === 'vPop' ? newRelease.items.vPop : newRelease.items.others);
   },[tab])
+  const dispatch = useAppDispatch();
+  const handleClick = (item:ISong) => {
+    dispatch(setPlay(item));
+    dispatch(setPlayMusic(true));
+    data && dispatch(setListSong(data))
+  }
   return (
     <>
       <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -64,7 +72,7 @@ function NewRelease({newRelease}:IProps) {
                 <div className="col-span-1" key={item.encodeId}>
                   <div
                     className="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600"
-                    // onClick={() => setChooseSong(item)}
+                    onClick={()=>handleClick(item)}
                   >
                     <div className="w-3/12 bg-gray-200 rounded-lg ">
                       <img

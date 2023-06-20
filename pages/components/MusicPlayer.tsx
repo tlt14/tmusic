@@ -27,6 +27,8 @@ import {
 import AudioPlayer from "./AudioPlayer";
 import axios from "axios";
 import { convertDuration } from "@/utils/time";
+import { addWishList, auth, handleLogin } from "@/firebase";
+import { toast } from "react-toastify";
 export default function MusicPlayer() {
   const { currentPlay, isPlaying, playlist, loop, shuffle } = useAppSelector(
     (state) => state.playMusic
@@ -36,13 +38,15 @@ export default function MusicPlayer() {
 
   useEffect(() => {
     async function getSong() {
-      try {
-        const { data }: ZingMp3Response = await axios.get(
-          `/api/song/${currentPlay.encodeId}`
-        );
-        setUrl(data.data);
-      } catch (e) {
-        console.log(e);
+      if(currentPlay.encodeId){
+        try {
+          const { data }: ZingMp3Response = await axios.get(
+            `/api/song/${currentPlay.encodeId}`
+          );
+          setUrl(data.data);
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
     getSong();
@@ -128,6 +132,14 @@ export default function MusicPlayer() {
       handleNext();
     }
   };
+  const handleAddWishList =()=>{
+    if(!auth.currentUser ){
+      handleLogin();
+    }else{
+      addWishList(currentPlay)
+      toast.success("Đã thêm vào danh sách yêu thích")
+    }
+  }
   return (
     <div className="min-w-full fixed bottom-0 z-50 flex items-center justify-between max-h-[12rem] bg-[#130C1C] px-5 min-h-[84px]">
       <div className="w-3/12 py-3 flex items-center">
@@ -143,7 +155,9 @@ export default function MusicPlayer() {
           </p>
         </div>
         {/* icon heart */}
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center"
+          onClick={handleAddWishList}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 text-white"

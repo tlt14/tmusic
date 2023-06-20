@@ -52,16 +52,16 @@ export interface INewRealease {
   };
 }
 export interface ICategory {
-  title: string;
-  sectionType: string;
-  viewType: string;
-  items: ISong[];
-  link: string;
-  itemType: string;
-  options: {
-    hideTitle: boolean;
-  };
-  sectionId: string;
+    title: string;
+    sectionType: string;
+    viewType: string;
+    items: ISong[];
+    link: string;
+    itemType: string;
+    options: {
+      hideTitle: boolean;
+    };
+    sectionId: string;
 }
 
 export interface PlaylistResponse {
@@ -118,4 +118,19 @@ export interface Top100Response{
 export interface IURLSong{
     128: string,
     320: string
+}
+export interface IRank{
+  banner: string,
+  type: string,
+  link: string,
+  title: string,
+  sectionType: string,
+  sectionId: string,
+  viewType: string,
+  items: ISong[],
+}
+export interface ISearchResult{
+  playlists: ISong[],
+sectionId:string
+songs: ISong[]
 }
