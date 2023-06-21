@@ -1,4 +1,3 @@
-import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -10,6 +9,7 @@ import { store } from '@/src/redux/store'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import RootLayout from '@/src/components/Layout/Layout'
+import '@/styles/globals.css'
 
 library.add(fas)
 
