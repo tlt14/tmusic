@@ -29,7 +29,7 @@ export default function Detail({ playListResponse }: IProps) {
   return (
     <>
     <Head>
-      <title>{data?.title}</title>
+      <title>{data?.aliasTitle}</title>
       <meta name="description" content={data?.description} />
     </Head>
     <div className="grid grid-cols-4 gap-x-4 ">
@@ -115,9 +115,12 @@ export default function Detail({ playListResponse }: IProps) {
 //     },
 //   };
 // };
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params ,req}) => {
   const encodeId = params?.id as string;
-  const res = await fetch("http://localhost:3000/api/album/" + encodeId);
+  const host = req.headers.host || 'localhost:3000'; // Lấy giá trị host từ đối tượng req, nếu không có thì mặc định là localhost:3000
+  const protocol = req.headers['x-forwarded-proto'] || 'http'; // Lấy giá trị protocol từ đối tượng req, nếu không có thì mặc định là http
+  const apiUrl = `${protocol}://${host}/api/album/`; // Sử dụng giá trị của host và protocol để xây dựng URL cho API
+  const res = await fetch(apiUrl + encodeId);
   const data: ZingMp3Response = await res.json();
   return {
     props: {

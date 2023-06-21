@@ -29,7 +29,7 @@ function NewRelease({newRelease}:IProps) {
   const [tab, setTab] = React.useState<string>("all");
   useEffect(() => {
     setData(tab === 'all' ? newRelease.items.all : tab === 'vPop' ? newRelease.items.vPop : newRelease.items.others);
-  },[tab, newRelease.items.vPop, newRelease.items.others, newRelease.items.all])
+  },[tab])
   const dispatch = useAppDispatch();
   const handleClick = (item:ISong) => {
     dispatch(setPlay(item));
@@ -69,25 +69,25 @@ function NewRelease({newRelease}:IProps) {
           data?.map(
             (item) =>
               item.streamingStatus === 1 && (
-                <div className="col-span-1" key={item.encodeId}>
+                <div className="col-span-1" key={item?.encodeId}>
                   <div
                     className="flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600"
                     onClick={()=>handleClick(item)}
                   >
                     <div className="w-3/12 bg-gray-200 rounded-lg ">
                       <img
-                        src={item.thumbnail}
-                        alt={item.title}
+                        src={item?.thumbnail}
+                        alt={item?.title}
                         className="w-full h-full object-center object-cover group-hover:opacity-75 rounded"
                       />
                     </div>
                     <div className="ml-4 w-9/12 flex flex-col justify-start">
                       <h3 className="text-sm font-bold text-gray-700 dark:text-white ">
                         <span aria-hidden="true" className="" />
-                        {item.title}
+                        {item?.title}
                       </h3>
                       <p className=" text-xs text-gray-500 dark:text-gray-400 ">
-                        {item.artistsNames}
+                        {item?.artistsNames}
                       </p>
                     </div>
                   </div>

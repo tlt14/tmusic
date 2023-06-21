@@ -5,6 +5,8 @@ import { ICategory, ISearchResult, ISong, ZingMp3Response } from "../../src/type
 import Category from "../components/Category";
 import { useAppDispatch } from "@/redux/hooks";
 import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
+import { searchAPI } from "@/src/service/zingmp3.service";
+import { data } from 'autoprefixer';
 
 export interface IAppProps {
     data:ZingMp3Response
@@ -77,10 +79,8 @@ export default function SearchAll({data}: IAppProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const q = context.query.q
-    const res = await axios.get(`http://localhost:3000/api/search/${q}`)
-    console.log(res.data);
-    const data = res.data
+    const q = context.query.q as string
+    const data = await searchAPI(q)
   return {
     props: {
         data

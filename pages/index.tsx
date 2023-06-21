@@ -3,6 +3,7 @@ import Banner from './components/Banner'
 import Category from './components/Category'
 import NewRelease from './components/NewRealase'
 import { IBanner, ICategory,  INewRealease, ZingMp3Response } from '../src/types/ZingMP3Response.type'
+import { getHome } from '@/src/service/zingmp3.service'
 
 
 
@@ -33,9 +34,7 @@ export default function Home({data}:ZingMp3Response ) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:3000/api/home')
-  const data: ZingMp3Response = await res.json()
-
+  const data: ZingMp3Response = await getHome()
   return {
     props: {
       data,

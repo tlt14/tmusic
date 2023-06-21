@@ -2,6 +2,7 @@ import { GetStaticProps } from "next"
 import { ICategory, Top100Response, ZingMp3Response } from "../../src/types/ZingMP3Response.type"
 import Category from "../components/Category"
 import Head from "next/head"
+import { getTop100 } from "@/src/service/zingmp3.service"
 
 interface IProps {
     outstanding : ICategory,
@@ -29,12 +30,9 @@ export default function Top100({outstanding, vPop, asianMusic, USMusic, concert}
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch(
-        "http://localhost:3000/api/top100"
-    )
-    const result: ZingMp3Response = await res.json()
-    const data: Top100Response[] = result.data
     
+    const result: ZingMp3Response = await getTop100()
+    const data: Top100Response[] = result.data
     return {
         props: {
             outstanding : data[0],

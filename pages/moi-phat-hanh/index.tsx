@@ -6,6 +6,7 @@ import Link from "next/link";
 import { convertDuration } from "@/src/utils/time";
 import { useAppDispatch } from "@/redux/hooks";
 import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
+import { getNewReleases } from "@/src/service/zingmp3.service";
 
 interface IProps{
     data: ZingMp3Response
@@ -68,8 +69,8 @@ export default function BXH({data}: IProps) {
     )
 }
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await axios('http://localhost:3000/api/new-release-chart')
-    const data: ZingMp3Response = await res.data
+    
+    const data: ZingMp3Response = await getNewReleases()
     return {
         props: {data},
     }
