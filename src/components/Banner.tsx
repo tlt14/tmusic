@@ -52,7 +52,6 @@ function Banner({banner}: IProps) {
         const res =await axios.get('https://zingmp3-api.onrender.com/api/infosong?id='+item.encodeId)
         dispatch(setPlay(res.data.data as ISong));
         dispatch(setPlayMusic(true));
-        // data && dispatch(setListSong(searchRes.songs))
       }
   return (
     <Slider {...settings} responsive={responsiveSettings}>

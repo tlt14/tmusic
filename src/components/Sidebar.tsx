@@ -3,12 +3,14 @@
 import { auth, handleLogin } from "@/firebase";
 import Link from "next/link";
 import { Router, useRouter } from "next/router";
+import { Dispatch, SetStateAction } from "react";
 
 interface IPropsType {
     
     isShow: boolean;
+    setIsShow: Dispatch<SetStateAction<boolean>>
 }
-export default function Sidebar({isShow}: IPropsType) {
+export default function Sidebar({isShow, setIsShow}: IPropsType) {
   const router =useRouter();
   const handleClick =()=>{
     if(auth.currentUser && auth.currentUser?.uid) {
@@ -19,13 +21,14 @@ export default function Sidebar({isShow}: IPropsType) {
   }
   return (
     <aside
-        className={`fixed w-[238px] h-screen overflow-hidden  transition-transform  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-[#170f23] dark:border-gray-700 
+        className={`fixed z-50 w-[238px] h-screen overflow-hidden  transition-transform  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-[#170f23] dark:border-gray-700 
         ${ !isShow  && '-translate-x-full' }`}
       >
         <div className="h-full px-3 py-4 overflow-y-auto ">
           <ul className="space-y-2 font-medium">
             <li className="h-[70px] flex items-center">
-                <img className="px-[28px] w-full" src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg" alt={""}></img>
+                <img className="px-[28px] w-[calc(100%-28px)]" src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg" alt={""}></img>
+              <span className="text-2xl cursor-pointer mr-3 sm:hidden block" onClick={()=>{setIsShow(false)}}>x</span>
             </li>
             <li>
               <Link

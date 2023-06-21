@@ -20,7 +20,7 @@ export default function RootLayout({
     
         <div>
           <Navbar setIsShow={setIshow} isShow={isShow}/>
-          <Sidebar isShow={isShow} />
+          <Sidebar isShow={isShow}  setIsShow={setIshow} />
           <main className="p-4 sm:ml-56 dark:bg-[#170F23] min-h-screen ">
             <div className="p-6 rounded-lg mt-14 mb-[100px]">
               {children}

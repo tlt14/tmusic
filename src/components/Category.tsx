@@ -20,7 +20,7 @@ export default function Category({ category }: IProps) {
           Tất cả
         </Link> */}
       </div>
-      <div className="grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 mt-3">
+      <div className="grid md:grid-cols-3 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mt-3">
         {category?.items.map((item: ISong) => {
           return (
             <div
