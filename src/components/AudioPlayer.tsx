@@ -12,7 +12,7 @@ import {
   faVolumeHigh,
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
 import { setPlayMusic } from "@/src/features/playMusicSlice";
 import { convertDuration } from "@/src/utils/time";
 import { IURLSong } from "../../src/types/ZingMP3Response.type";

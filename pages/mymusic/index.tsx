@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ISong } from "../../src/types/ZingMP3Response.type";
 import { auth, getWishList } from "@/firebase";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/src/redux/hooks";
 import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
 import { data } from "autoprefixer";
 import Head from "next/head";

@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faPlayCircle } from "@fortawesome/free-regular-svg-icons";
 import {
   faBackwardStep,
@@ -12,9 +11,8 @@ import {
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
 import {
-  ISong,
   IURLSong,
   ZingMp3Response,
 } from "../../src/types/ZingMP3Response.type";
@@ -25,31 +23,30 @@ import {
   setShuffle,
 } from "@/src/features/playMusicSlice";
 import AudioPlayer from "./AudioPlayer";
-import axios from "axios";
 import { convertDuration } from "@/src/utils/time";
 import { addWishList, auth, handleLogin } from "@/firebase";
 import { toast } from "react-toastify";
-export default function MusicPlayer() {
+import { getSong } from "@/src/service/zingmp3.service";
+import { GetServerSideProps } from "next";
+import { loadEnvConfig } from "@next/env";
+export default function MusicPlayer({apiUrl}:any) {
   const { currentPlay, isPlaying, playlist, loop, shuffle } = useAppSelector(
     (state) => state.playMusic
   );
   const [url, setUrl] = useState<IURLSong>();
   const audioRef = useRef<HTMLAudioElement>(null);
-
   useEffect(() => {
-    async function getSong() {
+    async function fetchSong() {
       if(currentPlay.encodeId){
         try {
-          const { data }: ZingMp3Response = await axios.get(
-            `/api/song/${currentPlay.encodeId}`
-          );
+          const data : ZingMp3Response = await getSong(currentPlay.encodeId);
           setUrl(data.data);
         } catch (e) {
           console.log(e);
         }
       }
     }
-    getSong();
+    fetchSong();
     return () => {
       setUrl(undefined);
     };
@@ -307,4 +304,18 @@ export default function MusicPlayer() {
       </div>
     </div>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  await loadEnvConfig(process.cwd())
+
+  // Access environment variables
+  const apiUrl = process.env.API_URL 
+
+  // Pass environment variables to the client-side props
+  return {
+    props: {
+      apiUrl,
+    },
+  }
 }

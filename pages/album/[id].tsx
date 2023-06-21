@@ -5,11 +5,12 @@ import {
   ZingMp3Response,
 } from "../../src/types/ZingMP3Response.type";
 import { convertDuration } from "@/src/utils/time";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
 import { useEffect } from "react";
 import { setPlayList } from "@/src/features/playListSlice";
 import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
 import Head from "next/head";
+import { getAlbum } from "@/src/service/zingmp3.service";
 
 interface IProps {
   playListResponse: ZingMp3Response;
@@ -117,11 +118,7 @@ export default function Detail({ playListResponse }: IProps) {
 // };
 export const getServerSideProps: GetServerSideProps = async ({ params ,req}) => {
   const encodeId = params?.id as string;
-  const host = req.headers.host || 'localhost:3000'; // Lấy giá trị host từ đối tượng req, nếu không có thì mặc định là localhost:3000
-  const protocol = req.headers['x-forwarded-proto'] || 'http'; // Lấy giá trị protocol từ đối tượng req, nếu không có thì mặc định là http
-  const apiUrl = `${protocol}://${host}/api/album/`; // Sử dụng giá trị của host và protocol để xây dựng URL cho API
-  const res = await fetch(apiUrl + encodeId);
-  const data: ZingMp3Response = await res.json();
+  const data: ZingMp3Response = await getAlbum(encodeId);
   return {
     props: {
       playListResponse: data,

@@ -1,12 +1,10 @@
 import * as React from "react";
 import { GetServerSideProps } from "next";
-import axios from "axios";
 import { ICategory, ISearchResult, ISong, ZingMp3Response } from "../../src/types/ZingMP3Response.type";
-import Category from "../components/Category";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/src/redux/hooks";
 import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
 import { searchAPI } from "@/src/service/zingmp3.service";
-import { data } from 'autoprefixer';
+import Category from "@/src/components/Category";
 
 export interface IAppProps {
     data:ZingMp3Response

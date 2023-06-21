@@ -4,7 +4,7 @@ import axios from 'axios';
 import { IRank, ISong, ZingMp3Response } from '../../src/types/ZingMP3Response.type';
 import Link from "next/link";
 import { convertDuration } from "@/src/utils/time";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "@/src/redux/hooks";
 import { setListSong, setPlay, setPlayMusic } from "@/src/features/playMusicSlice";
 import { getNewReleases } from "@/src/service/zingmp3.service";
 

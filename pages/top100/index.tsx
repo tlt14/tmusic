@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next"
 import { ICategory, Top100Response, ZingMp3Response } from "../../src/types/ZingMP3Response.type"
-import Category from "../components/Category"
 import Head from "next/head"
 import { getTop100 } from "@/src/service/zingmp3.service"
+import Category from "@/src/components/Category"
 
 interface IProps {
     outstanding : ICategory,
