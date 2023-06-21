@@ -61,7 +61,7 @@ export default function Detail({ playListResponse }: IProps) {
       <div className="flex-col justify-start rounded  h-auto dark:bg-transparent col-span-3 min-h-screen overflow-y-auto ">
         <p className="text-lg px-5 pt-2 text-gray-500">
           Lời tựa{" "}
-          <span className="text-sm text-white">{data.sortDescription}</span>
+          <span className="text-sm text-white">{data?.sortDescription}</span>
         </p>
         <ul className="w-full px-5 divide-y divide-gray-200 dark:divide-gray-700 relative">
           {data &&
@@ -116,7 +116,7 @@ export default function Detail({ playListResponse }: IProps) {
 //     },
 //   };
 // };
-export const getServerSideProps: GetServerSideProps = async ({ params ,req}) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const encodeId = params?.id as string;
   const data: ZingMp3Response = await getAlbum(encodeId);
   return {

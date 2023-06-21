@@ -7,18 +7,13 @@ import NewRelease from '@/src/components/NewRealase'
 import Category from '@/src/components/Category'
 
 
+interface IProps{
+  banner:IBanner, newRelease:INewRealease, chillCategory:ICategory,  artists:ICategory 
+}
 
-export default function Home({data}:ZingMp3Response ) {
+export default function Home({ banner, newRelease, chillCategory, artists }:IProps ) {
   // getdata banner from data
-  const banner:IBanner = data.data.items?.filter((item: any) => item.sectionType==='banner')[0]
-  // getdata new release from data
-  const newRelease:INewRealease = data.data.items?.filter((item: any) => item.sectionType==='new-release')[0]
-  // getdata category chill from data
-  const chillCategory:ICategory = data.data.items?.filter((item: any) => item.title==='Chill')[0]
-  // getdata category happy weekend from data
-  const happyWeekend:ICategory = data.data.items?.filter((item: any) => item.title==='Happy weekend')[0]
-  // getdata category Nghệ sĩ thịnh hành from data
-  const artists:ICategory = data.data.items?.filter((item: any) => item.title==='Nghệ sĩ thịnh hành')[0]
+  
   return (
       <>
         <Head>
@@ -28,18 +23,28 @@ export default function Home({data}:ZingMp3Response ) {
         <Banner banner={banner}/>
         <NewRelease newRelease={newRelease}/>
         <Category category={chillCategory}/>
-        {happyWeekend && <Category category={happyWeekend}/>} 
         <Category category={artists}/>
       </>
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data: ZingMp3Response = await getHome()
+  const banner:IBanner = data.data.items?.filter((item: any) => item.sectionType==='banner')[0]
+  // getdata new release from data
+  const newRelease:INewRealease = data.data.items?.filter((item: any) => item.sectionType==='new-release')[0]
+  // getdata category chill from data
+  const chillCategory:ICategory = data.data.items?.filter((item: any) => item.title==='Chill')[0]
+  // getdata category happy weekend from data
+  // const happyWeekend:ICategory = data.data.items?.filter((item: any) => item.title==='Happy weekend')[0]
+  // getdata category Nghệ sĩ thịnh hành from data
+  const artists:ICategory = data.data.items?.filter((item: any) => item.title==='Nghệ sĩ thịnh hành')[0]
   return {
     props: {
-      data,
+      banner,
+      newRelease,
+      chillCategory,
+      artists,
     },
-    revalidate: 60,
   }
 }
