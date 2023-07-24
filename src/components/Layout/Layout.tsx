@@ -3,6 +3,8 @@ import { useState } from "react";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import MusicPlayer from "../MusicPlayer";
+import { useSelector } from "react-redux";
+import { RootState } from "@/src/redux/store";
 
 
 export const metadata = {
@@ -16,6 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isShow,setIshow] = useState(false) 
+  const {currentPlay} = useSelector((state: RootState) => state.playMusic)
   return (
     
         <div>
@@ -26,7 +29,12 @@ export default function RootLayout({
               {children}
             </div>
           </main>
-          <MusicPlayer/>
+          {
+            currentPlay.encodeId?
+            <MusicPlayer currentPlay={currentPlay}/>
+            :
+            null
+          }
         </div>
   );
 }

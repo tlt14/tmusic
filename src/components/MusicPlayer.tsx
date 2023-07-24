@@ -140,6 +140,7 @@ export default function MusicPlayer({apiUrl}:any) {
   return (
     <div className="min-w-full fixed bottom-0 z-50 flex items-center justify-between max-h-[12rem] bg-[#130C1C] px-5 min-h-[84px]">
       <div className="w-3/12 py-3 flex items-center">
+        {/*  eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="max-w-[64px] rounded-sm"
           src={currentPlay.thumbnail}
